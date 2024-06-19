@@ -1,0 +1,5 @@
+# Server assets
+assets/
+
+*.css
+*.css.map

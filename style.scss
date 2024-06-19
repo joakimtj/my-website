@@ -1,0 +1,231 @@
+$text-color: #d8dee3;
+
+$sidebar-background-color: #4b555f;
+
+@media only screen and (max-width: 900px) {
+    /// For the @media query to override the original css
+    /// we need a higher specificity.
+    /// Therefore we add main-content-flex.
+    /// If we refer only to .side-bar they will have equal
+    /// specificity and the media query will not take precedence.
+    body .main-content-flex {
+        flex-direction: row;
+    }
+
+    .main-content-flex .side-bar {
+        width: 100%; // Adjust width of navbar to accomodate smaller screen width.
+        height: auto;
+
+        nav ul li a {
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-top: 0.35rem;
+            margin-bottom: 0.15rem;
+
+            // transition: height 1s ease-in-out;
+        }
+    }
+
+    .main-content-flex .main-content-container {
+         // Adjust the main content accordingly.
+        margin-top: 11.5rem;
+        margin-left: auto;
+    }
+}
+
+// The aside contains the side-bar.
+.side-bar 
+{
+    background-color: $sidebar-background-color;
+    position: fixed;
+    height: 100%;
+    width: 110px;
+    // transition: width 1s ease-in-out;
+}
+
+/*
+@media screen and (min-width: 900px)
+{
+    .side-bar:hover {
+        width: 150px;
+    }
+    
+    .side-bar:hover ~ .main-content-container {
+        margin-left: 10rem;
+    }
+}
+*/
+
+// Much of this is taken from https://www.w3schools.com/css/css_navbar.asp
+// My original side-bar only used a's nested in a nav.
+nav
+{
+    ul 
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li a {
+            display: block;
+
+            color: $text-color;
+            padding: 14px 12px;
+
+            text-decoration: none;
+            text-align: right;
+        }
+
+        li {
+            background-color: $sidebar-background-color;
+
+            
+        }
+
+        li:hover:not(.active) {
+            // Note: this used to be li a:hover. This caused the .active:hover not to take precedence. Not sure if higher specificity or if this is because this worked on a child element.
+            @keyframes navhover {
+                from { background-color: $sidebar-background-color; }
+                to { background-color: #565f6d }
+            }
+
+            $hover-hightlight-bg-color: #565f6d;
+
+            background-color: $hover-hightlight-bg-color;
+            color: white;
+
+            animation-name: navhover;
+            animation-duration: 1000ms;
+        }
+
+        li a img {
+            display: inline;
+            float: left;
+        }
+    }
+}
+
+// The active page on the navbar is highlighted this color.
+.active {
+    @keyframes border-animation {
+        from { border-left: 4px solid $sidebar-background-color; }
+        to { border-left: 4px solid #8893a7; }
+    }
+
+    border-left: 4px solid #8893a7;
+
+    background-color: #b8c5d3;
+
+    transition: background-color 1s ease-in-out;
+
+    animation-name: border-animation;
+    animation-duration: 2000ms;
+    animation-iteration-count: 1;
+}
+
+.active:hover {
+    background-color: aqua;
+}
+
+.logo {
+
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    scale: 1;
+    transition: scale 500ms ease-in-out;
+    width: 75px;
+
+    border-radius: 100px;
+
+    box-shadow: 0px 0px 4px 8px #434c55;
+}
+
+.logo:hover {
+    scale: 1.15;
+}
+
+// The contents of the article.
+.post 
+{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    font-size: 14px;
+
+    h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        font-size: 28px;
+    }
+}
+
+// The infobar with the publishing date. As well as the border between the header and infobar.
+.post-info 
+{
+    margin-top: 0;
+
+    padding: 2px;
+
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+
+    font-size: 10px;
+}
+
+.main-content-container
+{
+    margin-left: 7.5rem;
+    // transition: margin-left 1s ease-in-out;
+
+    padding: 0 1em;
+}
+
+.main-content-flex 
+{
+    display: flex;
+    flex-direction: column;
+}
+
+body 
+{
+    background-color: #283036;
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+aside {
+    color: $text-color;
+    float: right;
+    border-left: 2px solid $text-color;
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+    font-style: italic;
+    width: 80%;
+}
+
+.video-content {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+h1 {
+    color: $text-color;
+}
+
+li {
+    color: $text-color;
+}
+
+p {
+    color: $text-color;
+    margin: 1px;
+}
